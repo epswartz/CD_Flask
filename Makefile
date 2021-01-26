@@ -1,4 +1,8 @@
+lint:
+	pylint --disable=R,C main.py
+
 run:
+	pip install --upgrade pip
 	python main.py
 
 venv_fish:
