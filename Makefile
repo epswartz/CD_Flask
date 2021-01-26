@@ -2,7 +2,6 @@ lint:
 	pylint --disable=R,C main.py
 
 run:
-	pip install --upgrade pip
 	python main.py
 
 venv_fish:
@@ -13,5 +12,8 @@ venv:
 	python -m venv .venv
 	source .venv/bin/activate
 
-install: venv
+install:
+	pip install --upgrade pip
 	pip install -r requirements.txt
+
+all: venv install lint
