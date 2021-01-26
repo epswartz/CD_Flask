@@ -1,3 +1,6 @@
+test:
+	python -m pytest -vv .
+
 lint:
 	pylint --disable=R,C main.py
 
