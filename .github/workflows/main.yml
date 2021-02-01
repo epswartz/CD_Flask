@@ -1,4 +1,4 @@
-name: Install, Lint, and Test
+name: Install, Lint, Test, Deploy
 
 on: [push]
 
@@ -16,9 +16,23 @@ jobs:
     - name: Install dependencies
       run: |
         make install
-    - name: Lint with pylint
+    - name: Lint
       run: |
         make lint
-    - name: Test with pytest
+    - name: Test
       run: |
         make test
+
+    - name: Generate deployment package
+      run: zip -r deploy.zip . -x '*.git*'
+
+    - name: Deploy to EB
+      uses: einaregilsson/beanstalk-deploy@v14
+      with:
+        aws_access_key: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        aws_secret_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        application_name: CD_Flask
+        environment_name: CD_Flask_Environment
+        version_label: 0.0.1
+        region: us-east-1
+        deployment_package: deploy.zip
