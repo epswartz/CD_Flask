@@ -5,7 +5,7 @@ lint:
 	pylint --disable=R,C main.py
 
 run:
-	python main.py
+	python application.py
 
 venv_fish:
 	python3 -m venv .venv
