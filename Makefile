@@ -8,15 +8,15 @@ run:
 	python main.py
 
 venv_fish:
-	python -m venv .venv
+	python3 -m venv .venv
 	source .venv/bin/activate.fish
 
 venv:
-	python -m venv .venv
+	python3 -m venv .venv
 	source .venv/bin/activate
 
 install:
 	pip install --upgrade pip
 	pip install -r requirements.txt
 
-all: venv install lint
+all: venv_fish install lint
